@@ -1,0 +1,21 @@
+{
+   "name": "cardbot-api",
+   "version": "2.0.1",
+   "description": "API server. Bot for discount cards.",
+   "devDependencies": {
+      "ts-node": "3.3.0",
+      "@types/node": "^8.0.29",
+      "typescript": "3.3.3333"
+   },
+   "dependencies": {
+      "mysql": "^2.14.1",
+      "node-telegram-bot-api": "^0.54.0",
+      "nodemon": "^2.0.15",
+      "reflect-metadata": "^0.1.10",
+      "typeorm": "0.2.38"
+   },
+   "scripts": {
+      "start": "ts-node src/tg-bot/index.ts",
+      "dev": "nodemon src/tg-bot/index.ts"
+   }
+}
