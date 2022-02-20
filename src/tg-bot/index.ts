@@ -1,13 +1,16 @@
-import { TOKEN } from "./config";
+// import secret token
+import { TG_TOKEN } from '../../secret';
+
 import { get_commands } from "../module/commands";
 import { MsgData } from "../module/types";
+import { Message } from "./types";
 
 const TelegramApi = require('node-telegram-bot-api');
-const bot = new TelegramApi(TOKEN, {polling: true});
+const bot = new TelegramApi(TG_TOKEN, {polling: true});
 
-bot.on('message', async msg => {
+bot.on('message', async (msg: Message) => {
     const text: string = msg.text;
-    const chatId: string = msg.chat.id;
+    const chatId: number = msg.chat.id;
     const msgData: MsgData = {
         text,
         chatId,
@@ -39,7 +42,6 @@ function sendMessage(msgData : MsgData): void {
         });
         return;
     }
-
     bot.sendSticker(msgData.chatId, 'src/tg-bot/stickers/stick_bot.webp');
 }
 

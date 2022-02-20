@@ -4,5 +4,4 @@ node_modules/
 build/
 tmp/
 temp/
-src/tg-bot/config.ts
-ormconfig.json
+secret.ts
