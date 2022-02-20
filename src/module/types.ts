@@ -1,7 +1,7 @@
 export interface MsgData {
     text: string,
     image: string,
-    chatId: string,
+    chatId: number,
     action: string,
     buttons: string[] | [],
 }
