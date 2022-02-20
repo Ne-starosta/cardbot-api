@@ -51,7 +51,7 @@ function randomItem(items: Command[]): Command {
 
 async function getCardList(DB: DataBase, msgData: MsgData): Promise<MsgData> {
     const responseList = await DB.getCardList();
-    const cardList = responseList.map(item => item.command);
+    const cardList = responseList.map(item => item.command[0].toUpperCase() + item.command.slice(1));
     const uniqueList = Array.from(new Set(cardList));
 
     return {

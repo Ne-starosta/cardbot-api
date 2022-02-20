@@ -9,7 +9,7 @@ const TelegramApi = require('node-telegram-bot-api');
 const bot = new TelegramApi(TG_TOKEN, {polling: true});
 
 bot.on('message', async (msg: Message) => {
-    const text: string = msg.text;
+    const text: string = msg.text.toLowerCase();
     const chatId: number = msg.chat.id;
     const msgData: MsgData = {
         text,
@@ -61,3 +61,19 @@ function setKeyboard(cardList: string[]) {
     return keyboard || [];
 }
 
+bot.on('callback_query', async function onCallbackQuery(callbackQuery) {
+    const action = JSON.parse(callbackQuery.data);
+    const msg = callbackQuery.message;
+
+    const text: string = action.title.toLowerCase();
+    const chatId: number = msg.chat.id;
+    const msgData: MsgData = {
+        text,
+        chatId,
+        image: '',
+        buttons: [],
+        action: 'button',
+    };
+    const data: MsgData = await get_commands(msgData);
+    sendMessage(data);
+});
